@@ -1,0 +1,237 @@
+//#include<iostream>
+//using namespace std;
+//#include<string>
+//#include<iomanip>
+//
+//class Student
+//{
+//public:
+//	string name;
+//	string Id;
+//	string m_Class;
+//	double score1;
+//	double score2;
+//	double score3;
+//	double totalScore;
+//
+//	Student()
+//	{
+//		this->name = "NULL";
+//		this->Id = "NULL";
+//		this->m_Class = "NULL";
+//		this->score1 = 0;
+//		this->score2 = 0;
+//		this->score3 = 0;
+//		this->totalScore = 0;
+//	}
+//
+//	void input_s()
+//	{
+//		cout << "Id "; cin >> this->Id;
+//		cout << "class "; cin >> this->m_Class;
+//		cout << "name "; cin >> this->name;
+//		cout << "score1 "; cin >> this->score1;
+//		cout << "score2 "; cin >> this->score2;
+//		cout << "score3 "; cin >> this->score3;
+//		this->totalScore = this->score1 + this->score2 + this->score3;
+//	}
+//};
+//
+//class Class
+//{
+//public:
+//	Class() :numStu(0) {}
+//	
+//	void input(const Student& student)
+//	{
+//		if (numStu < MAX)
+//		{
+//			students[numStu] = student;
+//			numStu++;
+//		}
+//		else
+//		{
+//			cout << "人数已满" << endl;
+//		}
+//	}
+//
+//	void m_delete()
+//	{
+//		string finding;
+//		cin >> finding;
+//		for (int i = 0; i < numStu; i++)
+//		{
+//			if (students[i].name == finding || students[i].Id == finding)
+//			{
+//				for (int j = i; j < numStu - 1; j++)
+//				{
+//					students[j] = students[j + 1];
+//				}
+//				numStu--;
+//				return;
+//			}
+//		}
+//		cout << "查无此人";
+//	}
+//
+//	bool select_s()
+//	{
+//		string finding;
+//		cin >> finding;
+//		int flag = 0;
+//		for (int i = 0; i < numStu; i++)
+//		{
+//			if (students[i].Id == finding || students[i].m_Class == finding)
+//			{
+//				cout.precision(3);
+//				cout << setprecision(1) << setiosflags(ios::fixed) << students[i].Id << "," << students[i].m_Class << "," << students[i].name << "," << students[i].score1 << "," << students[i].score2 << "," << students[i].score3 << "," << students[i].totalScore << endl;
+//				flag++;
+//			}
+//		}
+//		if (flag == 0)
+//		{
+//			cout << "there is no eligible student\n";
+//			return false;
+//		}
+//		else
+//		{
+//			return true;
+//		}
+//	}
+//
+//	void sortByClass()
+//	{
+//		for (int i = 0; i < numStu - 1; i++)
+//		{
+//			for (int j = 0; j < numStu - i - 1; j++)
+//			{
+//				if (students[j].m_Class > students[j + 1].m_Class)
+//				{
+//					Student temp = students[j];
+//					students[j] = students[j + 1];
+//					students[j + 1] = temp;
+//				}
+//			}
+//		}
+//	}
+//
+//	void sortByScore()
+//	{
+//		for (int i = 0; i < numStu - 1; i++)
+//		{
+//			for (int j = 0; j < numStu - i - 1; j++)
+//			{
+//				if (students[j].m_Class == students[j + 1].m_Class)
+//				{
+//					if (students[j].totalScore < students[j + 1].totalScore)
+//					{
+//						Student temp = students[j];
+//						students[j] = students[j + 1];
+//						students[j + 1] = temp;
+//					}
+//				}
+//			}
+//		}
+//	}
+//
+//	void show()
+//	{
+//		for (int i = 0; i < numStu; i++)
+//		{
+//			cout << setprecision(1) << setiosflags(ios::fixed) << students[i].Id << "," << students[i].m_Class << "," << students[i].name << "," << students[i].score1 << "," << students[i].score2 << "," << students[i].score3 << "," << students[i].totalScore << endl;
+//		}
+//	}
+//
+//private:
+//	static const int MAX = 100;
+//	Student students[MAX];
+//	int numStu;
+//};
+//
+//int main()
+//{
+//	Class myClass;
+//	while (true)
+//	{
+//		cout << "1.input\n"
+//			<< "2.delete\n"
+//			<< "3.select\n"
+//			<< "4.order\n"
+//			<< "5.output\n"
+//			<< "6.quit\n"
+//			<< "please input your option\n";
+//		Student student;
+//		char yon[5] = { 1 };
+//		bool skip = true;
+//		int select;
+//		cin >> select;
+//		switch (select)
+//		{
+//		case 1:
+//			while (yon[0])
+//			{
+//				student.input_s();
+//				myClass.input(student);
+//				cout << "continue?\n";
+//				cin >> yon;
+//				if (yon[0] == 'y')
+//				{
+//					yon[0] = 1;
+//				}
+//				else
+//				{
+//					yon[0] = 0;
+//				}
+//			}
+//			break;
+//		case 2:
+//			while (yon[0])
+//			{
+//				myClass.m_delete();
+//				myClass.show();
+//				cout << "continue?\n";
+//				cin >> yon;
+//				if (yon[0] == 'y')
+//				{
+//					yon[0] = 1;
+//				}
+//				else
+//				{
+//					yon[0] = 0;
+//				}
+//			}
+//			break;
+//		case 3:
+//			skip = myClass.select_s();
+//			while (skip)
+//			{
+//				cout << "continue?\n";
+//				cin >> yon;
+//				if (yon[0] == 'n')
+//				{
+//					skip = false;
+//				}
+//				else
+//				{
+//					skip = myClass.select_s();
+//				}
+//			}
+//			break;
+//		case 4:
+//			myClass.sortByClass();
+//			myClass.sortByScore();
+//			myClass.show();
+//			break;
+//		case 5:
+//			myClass.show();
+//			break;
+//		case 6:
+//			return 0;
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//
+//	return 0;
+//}
